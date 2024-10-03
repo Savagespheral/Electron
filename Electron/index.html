@@ -1,0 +1,72 @@
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/lua/lua.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/ruby/ruby.min.js"></script>
+    <style>
+        .CodeMirror {
+            height: 100%;
+            font-family: monospace;
+            color: #00ff00;
+            background-color: #1e1e1e;
+        }
+        .CodeMirror-gutters {
+            background-color: #1e1e1e;
+            border-right: 0;
+        }
+        .CodeMirror-linenumber {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-mono h-screen flex flex-col">
+    <div class="flex flex-col h-full">
+        <div class="flex items-center justify-between bg-gray-800 p-2">
+            <div class="text-lg font-bold">ELECTRON</div>
+            <div class="flex items-center space-x-2">
+                <button class="text-gray-400 hover:text-white"><i class="fas fa-window-minimize"></i></button>
+                <button class="text-gray-400 hover:text-white"><i class="fas fa-window-maximize"></i></button>
+                <button class="text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="flex flex-1">
+            <div class="bg-gray-800 w-16 flex flex-col items-center py-4 space-y-4">
+                <button class="text-gray-400 hover:text-white"><i class="fas fa-bars"></i></button>
+                <button class="text-gray-400 hover:text-white"><i class="fas fa-cog"></i></button>
+                <button class="text-gray-400 hover:text-white"><i class="fas fa-gamepad"></i></button>
+                <button class="text-gray-400 hover:text-white"><i class="fas fa-file-alt"></i></button>
+            </div>
+            <div class="flex-1 p-4">
+                <textarea id="code-editor" class="bg-gray-900 p-4 rounded-lg h-full w-full"></textarea>
+            </div>
+        </div>
+        <div class="bg-gray-800 p-2 flex justify-between items-center">
+            <div class="flex space-x-2">
+                <button class="bg-gray-700 hover:bg-gray-600 text-white py-1 px-3 rounded">Execute</button>
+                <button id="clear-button" class="bg-gray-700 hover:bg-gray-600 text-white py-1 px-3 rounded">Clear</button>
+                <button class="bg-gray-700 hover:bg-gray-600 text-white py-1 px-3 rounded">Open File</button>
+                <button class="bg-gray-700 hover:bg-gray-600 text-white py-1 px-3 rounded">Save File</button>
+            </div>
+            <button class="bg-gray-700 hover:bg-gray-600 text-white py-1 px-3 rounded">Attach</button>
+        </div>
+    </div>
+    <script>
+        var editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
+            lineNumbers: true,
+            mode: "lua",
+            theme: "material-darker",
+            lineWrapping: true
+        });
+
+        document.getElementById("clear-button").addEventListener("click", function() {
+            editor.setValue("");
+        });
+    </script>
+</body>
+</html>
